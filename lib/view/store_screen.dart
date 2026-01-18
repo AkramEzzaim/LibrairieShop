@@ -129,7 +129,26 @@ class StoreScreen extends StatelessWidget {
                           child: Stack(
                             fit: StackFit.expand,
                             children: [
-                              Image.network(book.imageUrl, fit: BoxFit.cover),
+                              // Inside the GridView, replace the Image.network(...) with this:
+                              Image.network(
+                                book.imageUrl,
+                                fit: BoxFit.cover,
+                                // 1. Loading Builder: Shows a spinner while downloading
+                                loadingBuilder: (context, child, loadingProgress) {
+                                  if (loadingProgress == null) return child;
+                                  return const Center(child: CircularProgressIndicator());
+                                },
+                                // 2. Error Builder: Shows an icon if it fails & PRINTS the error
+                                errorBuilder: (context, error, stackTrace) {
+                                  print("IMAGE ERROR: $error"); // <--- Check your terminal for this!
+                                  return Container(
+                                    color: Colors.grey[200],
+                                    child: const Center(
+                                      child: Icon(Icons.broken_image, size: 40, color: Colors.grey),
+                                    ),
+                                  );
+                                },
+                              ),
                               // Floating Add Button
                               Positioned(
                                 top: 10,

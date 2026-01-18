@@ -35,7 +35,7 @@ class StoreController extends ChangeNotifier {
         author: 'Martin Fowler',
         price: 75.90,
         genre: 'Tech',
-        imageUrl: 'https://m.media-amazon.com/images/I/41xShlnTZTL._SX218_BO1,204,203,200_QL40_FMwebp_.jpg'
+        imageUrl: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1386925632i/44936.jpg'
     ),
 
     // --- FICTION ---
